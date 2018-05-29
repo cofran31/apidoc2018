@@ -1,0 +1,2532 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Plataforma Gratuita(Free) de desarrollo de compra y venta de productos mediante una API segura y confiable para generar aplicaciones.",
+    "version" : "v1",
+    "title" : "Api Tantakatu",
+    "contact" : { }
+  },
+  "host" : "mocksvc.mulesoft.com",
+  "basePath" : "/mocks/d6cfe4a9-9a88-48ce-b099-6935b4de8599",
+  "schemes" : [ "https" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  } ],
+  "paths" : {
+    "/adwords" : {
+      "get" : {
+        "summary" : "Obtener el listado de todos los anuncios",
+        "description" : "Devuelve todas los productos existentes",
+        "operationId" : "getAdwords",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/adwords"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creacion de un nuevo anuncio",
+        "description" : "A traves de esta peticion se crea un anuncio",
+        "operationId" : "postAdwords",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/adwords"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/adwords"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/adwords/anuncio_aleatorio" : {
+      "get" : {
+        "summary" : "Obtiene un anuncio aleatorio para mostrar",
+        "description" : "Devolvera un anuncio aleatorio",
+        "operationId" : "getAdwordsAnuncio_aleatorio",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/adwords_aleatorio"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/adwords/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de una producto por ID.",
+        "description" : "Devolvera los productos de un ID especifico.",
+        "operationId" : "getAdwordsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de un anuncio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/adwords"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion un anuncio",
+        "description" : "Puede actualizar todos los campos de un anuncio",
+        "operationId" : "putAdwordsId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de un anuncio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/adwords"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/adwords"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar un anuncio",
+        "description" : "Eliminar un anuncio por id",
+        "operationId" : "deleteAdwordsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de un anuncio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth" : { },
+    "/auth/login" : {
+      "post" : {
+        "description" : "Iniciar sesion para obtener un token  acceso",
+        "operationId" : "postAuthLogin",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/anonymousRepresentation"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            },
+            "headers" : {
+              "x-api-token" : {
+                "type" : "string"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout" : {
+      "post" : {
+        "description" : "Cerrar sesion de la plataforma",
+        "operationId" : "postAuthLogout",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "x-api-token",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/anonymousRepresentation2"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_adwords" : {
+      "post" : {
+        "summary" : "Creacion de un nuevo usuario cliente de anuncios.",
+        "description" : "Solo permite crear para del tipo usuario Cliente anuncios.",
+        "operationId" : "postClient_adwords",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_adwords"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/client_adwords"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_adwords/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de un usuario por ID propio",
+        "description" : "Devolvera los datos precisos de su usuario",
+        "operationId" : "getClient_adwordsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/client_adwords"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion de Usuario",
+        "description" : "Puede actualizar todos los campos de un usuario del tipo usuario Cliente de anuncios.",
+        "operationId" : "putClient_adwordsId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_adwords"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/client_purchases"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar un usuario del tipo usuario Cliente de anuncios.",
+        "description" : "Eliminar un usuario por id para el tipo usuario Cliente de anuncios.",
+        "operationId" : "deleteClient_adwordsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_purchases" : {
+      "post" : {
+        "summary" : "Creacion de un nuevo usuario cliente compras.",
+        "description" : "Solo permite crear para del tipo usuario Cliente compras.",
+        "operationId" : "postClient_purchases",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_purchases"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/client_purchases"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_purchases/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de un usuario por ID propio",
+        "description" : "Devolvera los datos precisos de su usuario",
+        "operationId" : "getClient_purchasesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/client_purchases"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion de Usuario",
+        "description" : "Puede actualizar todos los campos de un usuario del tipo usuario Cliente compras.",
+        "operationId" : "putClient_purchasesId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_purchases"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/client_purchases"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar un usuario del tipo usuario Cliente compras.",
+        "description" : "Eliminar un usuario por id para el tipo usuario Cliente compras.",
+        "operationId" : "deleteClient_purchasesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_sales" : {
+      "post" : {
+        "summary" : "Creacion de un nuevo usuario cliente ventas.",
+        "description" : "Solo permite crear para del tipo usuario Cliente ventas.",
+        "operationId" : "postClient_sales",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_sales"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/client_shops"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_sales/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de un usuario por ID propio",
+        "description" : "Devolvera los datos precisos de su usuario",
+        "operationId" : "getClient_salesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/client_shops"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion de Usuario",
+        "description" : "Puede actualizar todos los campos de un usuario del tipo usuario Cliente ventas.",
+        "operationId" : "putClient_salesId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_shops"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar un usuario del tipo usuario Cliente ventas.",
+        "description" : "Eliminar un usuario por id para el tipo usuario Cliente ventas.",
+        "operationId" : "deleteClient_salesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_shops" : {
+      "post" : {
+        "summary" : "Creacion de un nuevo usuario cliente tienda.",
+        "description" : "Solo permite crear para del tipo usuario Cliente Tienda.",
+        "operationId" : "postClient_shops",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_shops"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/client_shops"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/client_shops/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de un usuario por ID propio",
+        "description" : "Devolvera los datos precisos de su usuario",
+        "operationId" : "getClient_shopsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/client_shops"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion de Usuario",
+        "description" : "Puede actualizar todos los campos de un usuario del tipo usuario Cliente Tienda.",
+        "operationId" : "putClient_shopsId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/client_shops"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar un usuario del tipo usuario Cliente Tienda.",
+        "description" : "Eliminar un usuario por id para el tipo usuario Cliente Tienda.",
+        "operationId" : "deleteClient_shopsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Identificador de busqueda de ID de usuario propio.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/payments" : {
+      "get" : {
+        "summary" : "Obtener el listado de todas las formas de pago",
+        "description" : "Devuelve todas las formas de pago existentes para efectuar el cobro",
+        "operationId" : "getPayments",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/payments"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creacion una nueva forma de pago",
+        "description" : "Permite crear una nueva forma de pago",
+        "operationId" : "postPayments",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/payments"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/payments"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/payments/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de una forma de pago por ID.",
+        "description" : "Permite devolver una forma de pago especificado por su ID",
+        "operationId" : "getPaymentsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de la forma de pago.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/payments"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion permite actualizar una forma de pago",
+        "description" : "Permite realizar la actualizacion de una forma de pago",
+        "operationId" : "putPaymentsId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de la forma de pago.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/payments"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/payments"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar una forma de pago",
+        "description" : "Permite borrar la forma de pago seleccionada por ID",
+        "operationId" : "deletePaymentsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de la forma de pago.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/products" : {
+      "get" : {
+        "summary" : "Obtener el listado de todas los productos",
+        "description" : "Devuelve todas los productos existentes",
+        "operationId" : "getProducts",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/products"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creacion de un nueva nueva categoria",
+        "description" : "Para la creacion de categorias de productos",
+        "operationId" : "postProducts",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/products"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/products"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/products/categories" : {
+      "get" : {
+        "summary" : "Obtener el listado de todas las categorias de producto",
+        "description" : "Devuelve todas las categorias existentes",
+        "operationId" : "getProductsCategories",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/category"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creacion de un nueva nueva categoria",
+        "description" : "Para la creacion de categorias de productos",
+        "operationId" : "postProductsCategories",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/category"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/category"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/products/categories/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de una categoria por ID",
+        "description" : "Devolvera las categorias de productos",
+        "operationId" : "getProductsCategoriesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de una categoria especifica.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/category"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion de Usuario",
+        "description" : "Puede actualizar todos los campos de un usuario",
+        "operationId" : "putProductsCategoriesId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de una categoria especifica.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/category"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/category"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar una categoria",
+        "description" : "Eliminar una categoria por id",
+        "operationId" : "deleteProductsCategoriesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de una categoria especifica.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/products/clients_sales" : { },
+    "/products/clients_sales/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de una producto por ID de cliente de venta.",
+        "description" : "Devolvera los productos de un ID especifico.",
+        "operationId" : "getProductsClients_salesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de productos de un ID de cliente de venta.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/products"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/products/products_categories" : { },
+    "/products/products_categories/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de una productos por ID de categoria.",
+        "description" : "Devolvera los productos de un ID especifico de categoria.",
+        "operationId" : "getProductsProducts_categoriesId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de una categoria.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/products"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de una producto por ID.",
+        "description" : "Devolvera los productos de un ID especifico.",
+        "operationId" : "getProductsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de un producto.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/products"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion de un producto",
+        "description" : "Puede actualizar todos los campos de un producto",
+        "operationId" : "putProductsId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de un producto.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/products"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/products"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar un producto",
+        "description" : "Eliminar un producto por id",
+        "operationId" : "deleteProductsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de un producto.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/shopping_carts" : {
+      "get" : {
+        "summary" : "Obtener codigo de venta",
+        "description" : "Se solicita un codigo de venta para empezar las compras",
+        "operationId" : "getShopping_carts",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/shopping_carts"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Añade uno o varios productos con el codigo de venta",
+        "description" : "Permite empezar a seleccionar el producto o productos que se decea comprar",
+        "operationId" : "postShopping_carts",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/shopping_carts"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/shopping_carts"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/shopping_carts/venta/{cod_venta}" : {
+      "get" : {
+        "summary" : "Lista los articulos de una venta",
+        "description" : "Devolvera una lista con los posibles articulos de venta",
+        "operationId" : "getShopping_cartsVentaCod_venta",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "cod_venta",
+          "in" : "path",
+          "description" : "identificador de busqueda de codigo de venta.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/shopping_carts"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/shopping_carts/{id}" : {
+      "delete" : {
+        "summary" : "Eliminar un producto de la lista detalle de venta",
+        "description" : "Eliminar una producto por id de detalle de venta",
+        "operationId" : "deleteShopping_cartsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de detalle de venta.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/shops" : {
+      "get" : {
+        "summary" : "Obtener el listado de todas las tiendas",
+        "description" : "Devuelve todas las tiendas con las que cuenta la plataforma",
+        "operationId" : "getShops",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/shops"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creacion de una tienda",
+        "description" : "Establece la creacion de un nuevo negocio administrado por cliente_tienda",
+        "operationId" : "postShops",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/shops"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/shops"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/shops/cliente_tienda" : { },
+    "/shops/cliente_tienda/{id}" : {
+      "get" : {
+        "summary" : "Obtiene una lista de tiendas pertenecientes a un usuario cliente_tienda",
+        "description" : "Devolvera una lista con todas las tiedas administradas por un ID de cliente_tienda",
+        "operationId" : "getShopsCliente_tiendaId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador del cliente de la tienda.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/shops"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/shops/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de una tienda por ID.",
+        "description" : "Devolvera las tiendas de un ID especifico.",
+        "operationId" : "getShopsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de tienda.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/shops"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion una tienda por su usuario cliente_tienda",
+        "description" : "Puede actualizar todos los campos de un tienda",
+        "operationId" : "putShopsId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de tienda.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/shops"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/shops"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar una tienda",
+        "description" : "Eliminar una tienda por id",
+        "operationId" : "deleteShopsId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de tienda.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/transactions" : {
+      "get" : {
+        "summary" : "Obtener todas las transacciones de la plataforma",
+        "description" : "Se solicita un codigo de venta para empezar las compras",
+        "operationId" : "getTransactions",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/transactions"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{id_tienda}" : {
+      "get" : {
+        "summary" : "Lista las ventas de una tienda",
+        "description" : "Devolvera una lista las ventas realizadas en una tienda determinada por su ID",
+        "operationId" : "getTransactionsId_tienda",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id_tienda",
+          "in" : "path",
+          "description" : "identificador de busqueda de una tienda.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/transactions"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Añade uno o varios productos con el codigo de venta",
+        "description" : "Permite empezar a seleccionar el producto o productos que se decea comprar",
+        "operationId" : "postTransactionsId_tienda",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id_tienda",
+          "in" : "path",
+          "description" : "identificador de busqueda de una tienda.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/transactions"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/transactions"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/users" : {
+      "get" : {
+        "summary" : "Lista de todos los usuarios",
+        "description" : "muestra el listado de todos los usuarios",
+        "operationId" : "getUsers",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "$size",
+          "in" : "query",
+          "description" : "Tamaño de la página para recuperar.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 10
+        }, {
+          "name" : "$page",
+          "in" : "query",
+          "description" : "Número de la página para recuperar.",
+          "required" : false,
+          "type" : "number",
+          "format" : "double",
+          "x-example" : 1.0
+        }, {
+          "name" : "$sort",
+          "in" : "query",
+          "description" : "Orden en la que recuperar los resultados. Se pueden pasar múltiples criterios de clasificación. Ej sort = pais ASC, email DESC",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "name ASC"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Permite filtrar las colecciones de resultados por el valor del nombre del campo",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "Jhon Smith"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/users"
+              }
+            },
+            "headers" : {
+              "X-Page-Count" : {
+                "type" : "integer",
+                "format" : "int64",
+                "x-example" : "1"
+              },
+              "X-Page-Number" : {
+                "type" : "integer",
+                "format" : "int64",
+                "x-example" : "1"
+              },
+              "X-Page-Size" : {
+                "type" : "integer",
+                "format" : "int64",
+                "x-example" : "25"
+              },
+              "X-Total-Count" : {
+                "type" : "integer",
+                "format" : "int64",
+                "x-example" : "2"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creacion de un nuevo usuario Administrador Api",
+        "description" : "Solo del tipo ADMINISTRADOR USUARIO",
+        "operationId" : "postUsers",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/users"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Status 201",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          },
+          "400" : {
+            "description" : "Solicitud incorrecta",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "500" : {
+            "description" : "Error de servidor interno",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/users/type_users" : { },
+    "/users/type_users/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de un usuario por ID",
+        "description" : "Devolvera los datos precisos de un usuario",
+        "operationId" : "getUsersType_usersId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda por tipo de usuario",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "client_shops"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/users"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}" : {
+      "get" : {
+        "summary" : "Busqueda de un usuario por ID",
+        "description" : "Devolvera los datos precisos de un usuario",
+        "operationId" : "getUsersId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de usuario",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          },
+          "400" : {
+            "description" : "Status 400",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Actualizacion de Usuario",
+        "description" : "Puede actualizar todos los campos de un usuario",
+        "operationId" : "putUsersId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de usuario",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/users"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/users"
+            }
+          },
+          "400" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Eliminar un usuario",
+        "description" : "Eliminar un usuario por id",
+        "operationId" : "deleteUsersId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "identificador de busqueda de ID de usuario",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64",
+          "x-example" : 23
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Status 404",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "description" : "Este API soporta Autenticacion Basica.",
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "Error" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "Mensaje de error generado por el sistema."
+        }
+      },
+      "description" : "Esta estructura de error general se usa en esta API."
+    },
+    "users" : {
+      "type" : "object",
+      "required" : [ "ciudad", "direccion", "dni", "email", "nombre", "pais", "telefono" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "tipo_usuario" : {
+          "type" : "string",
+          "description" : "Muestra el tipo de usuario."
+        },
+        "nombre" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo del usuario."
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Campo con el email del usuario."
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Campo con el password del usuario."
+        },
+        "direccion" : {
+          "type" : "string",
+          "description" : "Campo con la dirección del usuario."
+        },
+        "telefono" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el numero de teléfono de contacto del usuario."
+        },
+        "pais" : {
+          "type" : "string",
+          "description" : "Campo del país de residencia del usuario."
+        },
+        "ciudad" : {
+          "type" : "string",
+          "description" : "campo con el nombre de la ciudad."
+        },
+        "dni" : {
+          "type" : "string",
+          "description" : "Campo con el numero de documento de identidad del usuario."
+        }
+      },
+      "description" : "información requerida para los recursos users"
+    },
+    "client_shops" : {
+      "type" : "object",
+      "required" : [ "ciudad", "direccion", "dni", "email", "nombre", "pais", "telefono" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "tipo_usuario" : {
+          "type" : "string",
+          "description" : "Muestra el tipo de usuario."
+        },
+        "nombre" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo del usuario."
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Campo con el email del usuario."
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Campo con el password del usuario."
+        },
+        "direccion" : {
+          "type" : "string",
+          "description" : "Campo con la dirección del usuario."
+        },
+        "telefono" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el numero de teléfono de contacto del usuario."
+        },
+        "pais" : {
+          "type" : "string",
+          "description" : "Campo del país de residencia del usuario."
+        },
+        "ciudad" : {
+          "type" : "string",
+          "description" : "campo con el nombre de la ciudad."
+        },
+        "dni" : {
+          "type" : "string",
+          "description" : "Campo con el numero de documento de identidad del usuario."
+        }
+      },
+      "description" : "información requerida para del cliente de tienda"
+    },
+    "client_sales" : {
+      "type" : "object",
+      "required" : [ "ciudad", "direccion", "dni", "email", "nombre", "pais", "telefono" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "tipo_usuario" : {
+          "type" : "string",
+          "description" : "Muestra el tipo de usuario."
+        },
+        "nombre" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo del usuario."
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Campo con el email del usuario."
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Campo con el password del usuario."
+        },
+        "direccion" : {
+          "type" : "string",
+          "description" : "Campo con la dirección del usuario."
+        },
+        "telefono" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el numero de teléfono de contacto del usuario."
+        },
+        "pais" : {
+          "type" : "string",
+          "description" : "Campo del país de residencia del usuario."
+        },
+        "ciudad" : {
+          "type" : "string",
+          "description" : "campo con el nombre de la ciudad."
+        },
+        "dni" : {
+          "type" : "string",
+          "description" : "Campo con el numero de documento de identidad del usuario."
+        }
+      },
+      "description" : "información requerida para del cliente que vende articulos"
+    },
+    "client_purchases" : {
+      "type" : "object",
+      "required" : [ "ciudad", "direccion", "dni", "email", "nombre", "pais", "telefono" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "tipo_usuario" : {
+          "type" : "string",
+          "description" : "Muestra el tipo de usuario."
+        },
+        "nombre" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo del usuario."
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Campo con el email del usuario."
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Campo con el password del usuario."
+        },
+        "direccion" : {
+          "type" : "string",
+          "description" : "Campo con la dirección del usuario."
+        },
+        "telefono" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el numero de teléfono de contacto del usuario."
+        },
+        "pais" : {
+          "type" : "string",
+          "description" : "Campo del país de residencia del usuario."
+        },
+        "ciudad" : {
+          "type" : "string",
+          "description" : "campo con el nombre de la ciudad."
+        },
+        "dni" : {
+          "type" : "string",
+          "description" : "Campo con el numero de documento de identidad del usuario."
+        }
+      },
+      "description" : "información requerida para del cliente que compra articulos"
+    },
+    "client_adwords" : {
+      "type" : "object",
+      "required" : [ "ciudad", "direccion", "dni", "email", "nombre", "pais", "telefono" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "tipo_usuario" : {
+          "type" : "string",
+          "description" : "Muestra el tipo de usuario."
+        },
+        "nombre" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo del usuario."
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Campo con el email del usuario."
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Campo con el password del usuario."
+        },
+        "direccion" : {
+          "type" : "string",
+          "description" : "Campo con la dirección del usuario."
+        },
+        "telefono" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el numero de teléfono de contacto del usuario."
+        },
+        "pais" : {
+          "type" : "string",
+          "description" : "Campo del país de residencia del usuario."
+        },
+        "ciudad" : {
+          "type" : "string",
+          "description" : "campo con el nombre de la ciudad."
+        },
+        "dni" : {
+          "type" : "string",
+          "description" : "Campo con el numero de documento de identidad del usuario."
+        }
+      },
+      "description" : "información requerida para del cliente que publica anuncios"
+    },
+    "products" : {
+      "type" : "object",
+      "required" : [ "descripcion", "id_categoria", "nombre", "precio" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "id_cliente_venta" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave foránea identifica el tipo de usuario vendedor de productos."
+        },
+        "id_categoria" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el id de la categoria que pertenece."
+        },
+        "nombre" : {
+          "type" : "string",
+          "description" : "Nombre del producto."
+        },
+        "descripcion" : {
+          "type" : "string",
+          "description" : "Una breve reseña de lo que trae el producto."
+        },
+        "precio" : {
+          "type" : "string",
+          "description" : "Campo con el precio del producto"
+        },
+        "fecha_reg" : {
+          "type" : "string",
+          "description" : "Muestra la fecha de registro del producto."
+        },
+        "estado" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Muestra la disponibilidad del articulo."
+        }
+      },
+      "description" : "información requerida para los recursos articulos"
+    },
+    "category" : {
+      "type" : "object",
+      "required" : [ "descripcion", "nombre" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "nombre" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo de la categoria."
+        },
+        "descripcion" : {
+          "type" : "string",
+          "description" : "Muestra la descripcion de una categoria."
+        }
+      },
+      "description" : "Todos los datos de categorias"
+    },
+    "payments" : {
+      "type" : "object",
+      "required" : [ "nombre_entidad_financiera", "tipo_tarjeta" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "id_users" : {
+          "type" : "string",
+          "description" : "Campo de clave foránea identifica el tipo de usuario administrador del api"
+        },
+        "nombre_entidad_financiera" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo de la entidad finaciera."
+        },
+        "tipo_tarjeta" : {
+          "type" : "string",
+          "description" : "El tipo de tarjeta que usa."
+        }
+      },
+      "description" : "This is a new DataType"
+    },
+    "shopping_carts" : {
+      "type" : "object",
+      "properties" : {
+        "code_venta" : {
+          "type" : "string",
+          "description" : "Campo generado automaticamente para empezar las ventas"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "id_articulo" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el id del producto seleccionado."
+        },
+        "precio" : {
+          "type" : "string",
+          "description" : "Precio que cuesta el producto"
+        },
+        "fecha_detalle" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Campo con la fecha del registro."
+        }
+      },
+      "description" : "Detalle de todos los productos registrados para la venta"
+    },
+    "shops" : {
+      "type" : "object",
+      "required" : [ "ciudad", "direccion", "email", "pais", "responsable", "telefono", "tipo_moneda" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "id_cliente_tienda" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave foránea identifica id de usuario cliente tienda"
+        },
+        "responsable" : {
+          "type" : "string",
+          "description" : "Nombre del responsable de la tienda."
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Email del negocio."
+        },
+        "direccion" : {
+          "type" : "string",
+          "description" : "Campo con la direccion del negocio."
+        },
+        "telefono" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el telefono del negocio."
+        },
+        "pais" : {
+          "type" : "string",
+          "description" : "Campo del país de residencia del usuario."
+        },
+        "ciudad" : {
+          "type" : "string",
+          "description" : "campo con el nombre de la ciudad."
+        },
+        "tipo_moneda" : {
+          "type" : "string",
+          "description" : "manejo de moneda en dolares."
+        }
+      },
+      "description" : "This is a new DataType"
+    },
+    "adwords" : {
+      "type" : "object",
+      "required" : [ "nombre_anuncio", "tipo_anuncio", "url_web" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "id_cliente_anuncio" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Muestra el tipo de usuario cliente anuncio."
+        },
+        "nombre_anuncio" : {
+          "type" : "string",
+          "description" : "Campo con el nombre completo del anuncio."
+        },
+        "url_web" : {
+          "type" : "string",
+          "description" : "Campo con la web del usuario cliente anuncio."
+        },
+        "tipo_anuncio" : {
+          "type" : "string",
+          "description" : "Campo con el tipo de anuncio."
+        },
+        "vistas" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el numero de veces visto en los anuncios."
+        }
+      },
+      "description" : "información requerida para los recursos anuncios de publicidad"
+    },
+    "adwords_aleatorio" : {
+      "type" : "object",
+      "required" : [ "iframe" ],
+      "properties" : {
+        "iframe" : {
+          "type" : "string",
+          "description" : "Campo con el iframe del anuncio."
+        }
+      },
+      "description" : "Devuelve un iframe con anuncion para la insercion en una web"
+    },
+    "transactions" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal generado automáticamente"
+        },
+        "cod_venta" : {
+          "type" : "string",
+          "description" : "Campo de del codigo de venta"
+        },
+        "id_tienda" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de del id de la tienda que desea comprar"
+        },
+        "id_cliente_compra" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo de clave principal del cliente que desea realizar la compra de producto"
+        },
+        "id_forma_pago" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo que identifica la forma de pago"
+        },
+        "num_tarjeta" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo que identifica el numero de tarjeta"
+        },
+        "fecha_exp_tarjeta" : {
+          "type" : "string",
+          "description" : "Campo que identifica la fecha de expiracion de la tarjeta"
+        },
+        "cvv2" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo con el codigo de seguridad de la tarjeta"
+        },
+        "monto" : {
+          "type" : "string",
+          "description" : "Campo con el codigo de seguridad de la tarjeta"
+        },
+        "pagado" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Campo que identifica si la venta fue pagada"
+        },
+        "fecha_reg" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Campo con la fecha del registro."
+        }
+      },
+      "description" : "This is a new DataType"
+    },
+    "anonymousRepresentation" : {
+      "type" : "object",
+      "required" : [ "email", "password" ],
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "anonymousRepresentation2" : {
+      "type" : "object",
+      "required" : [ "message" ],
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
